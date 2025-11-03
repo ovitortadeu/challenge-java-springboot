@@ -35,9 +35,10 @@ public class Usuario implements UserDetails {
     @Column(name = "role", length = 20, nullable = false)
     private Role role;
 
+    // CAMPO ANTIGO 'veiculos' SUBSTITUÍDO POR 'locacoes' (corrige 'AnnotationException')
     @ToString.Exclude 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Veiculo> veiculos;
+    private List<Locacao> locacoes;
 
 
     @Override

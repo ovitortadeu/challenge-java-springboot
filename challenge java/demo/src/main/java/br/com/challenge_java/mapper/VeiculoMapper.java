@@ -2,7 +2,7 @@ package br.com.challenge_java.mapper;
 
 import br.com.challenge_java.dto.VeiculoCreateDTO;
 import br.com.challenge_java.dto.VeiculoDTO;
-import br.com.challenge_java.model.Usuario;
+import br.com.challenge_java.model.Patio; // <-- ALTERADO
 import br.com.challenge_java.model.Veiculo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,21 +12,21 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface VeiculoMapper {
 
-    @Mapping(source = "usuario.id", target = "usuarioId")
-    @Mapping(source = "usuario.username", target = "usernameUsuario")
+    @Mapping(source = "patio.id", target = "patioId") // <-- ALTERADO
+    @Mapping(source = "patio.nome", target = "nomePatio") // <-- ALTERADO
     VeiculoDTO toVeiculoDTO(Veiculo veiculo);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "usuario", source = "usuarioId", qualifiedByName = "usuarioFromId")
+    @Mapping(target = "patio", source = "patioId", qualifiedByName = "patioFromId") // <-- ALTERADO
     Veiculo toVeiculo(VeiculoCreateDTO veiculoCreateDTO);
 
-    @Named("usuarioFromId")
-    default Usuario usuarioFromId(Long id) {
+    @Named("patioFromId") // <-- ALTERADO
+    default Patio patioFromId(Long id) { // <-- ALTERADO
         if (id == null) {
             return null;
         }
-        Usuario usuario = new Usuario();
-        usuario.setId(id);
-        return usuario;
+        Patio patio = new Patio(); // <-- ALTERADO
+        patio.setId(id);
+        return patio;
     }
 }

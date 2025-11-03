@@ -14,11 +14,11 @@ public interface UsuarioMapperInterface {
     UsuarioDTO toUsuarioDTO(Usuario usuario);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "veiculos", ignore = true)
+    @Mapping(target = "locacoes", ignore = true) // <-- ALTERADO
     Usuario toUsuario(UsuarioCreateDTO usuarioCreateDTO);
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "veiculos", ignore = true)
+    @Mapping(target = "locacoes", ignore = true) // <-- ALTERADO
     @Mapping(target = "senha", ignore = true) 
     void updateUsuarioFromDto(UsuarioUpdateDTO usuarioUpdateDTO, @MappingTarget Usuario usuario);
 }

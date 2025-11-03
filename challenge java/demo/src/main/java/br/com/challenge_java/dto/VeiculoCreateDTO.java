@@ -7,8 +7,8 @@ import lombok.Data;
 
 @Data
 public class VeiculoCreateDTO {
-    @NotNull(message = "ID do usuário é obrigatório")
-    private Long usuarioId;
+    @NotNull(message = "ID do pátio é obrigatório") // <-- ALTERADO
+    private Long patioId; // <-- ALTERADO
 
     @Size(max = 7, message = "Placa antiga deve ter no máximo 7 caracteres")
     private String placaAntiga;

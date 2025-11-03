@@ -9,7 +9,7 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
 
     Optional<Veiculo> findByPlacaNova(String placaNova);
 
-    List<Veiculo> findByUsuarioId(Long usuarioId);
-    
-    List<Veiculo> findByUsuarioUsername(String username);
+    // REMOVIDOS: Estes métodos causaram o erro, pois a coluna 'usuario' não existe mais
+    // List<Veiculo> findByUsuarioId(Long usuarioId);
+    // List<Veiculo> findByUsuarioUsername(String username);
 }

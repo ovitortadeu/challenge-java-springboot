@@ -2,7 +2,7 @@ package br.com.challenge_java.config;
 
 import br.com.challenge_java.repository.UsuarioRepository;
 import br.com.challenge_java.security.JWTAuthFilter;
-import lombok.RequiredArgsConstructor;
+// import lombok.RequiredArgsConstructor; // Removido
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -25,11 +25,16 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
+// @RequiredArgsConstructor // Removido
 public class SecurityConfig {
 
     private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
     private final UsuarioRepository usuarioRepository;
+
+    // Construtor manual adicionado
+    public SecurityConfig(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -78,20 +83,27 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/css/**", "/js/**", "/error").permitAll()
-                .requestMatchers("/veiculos/new", "/veiculos/edit/**", "/veiculos/delete/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                // Permite acesso a páginas de erro
+                .requestMatchers("/login", "/css/**", "/js/**", "/error", "/acesso-negado").permitAll() 
+                
+                // ALTERAÇÃO: Agora, TUDO em /veiculos/ só pode ser acessado por ADMIN
+                .requestMatchers("/veiculos/**", "/dashboard/**").hasRole("ADMIN")
+                
+                // Qualquer outra requisição precisa de autenticação
+                .anyRequest().authenticated() 
             )
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/veiculos", true)
+                .defaultSuccessUrl("/veiculos", true) // ADMIN vai para /veiculos
                 .permitAll()
             )
             .logout(logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .permitAll()
-            );
+            )
+             // ADICIONADO: Handler de acesso negado (Feedback da S3)
+            .exceptionHandling(ex -> ex.accessDeniedPage("/acesso-negado"));
 
         return http.build();
     }

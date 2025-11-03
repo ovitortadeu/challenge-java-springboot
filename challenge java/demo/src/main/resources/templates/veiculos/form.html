@@ -31,15 +31,14 @@
             </div>
             
             <div>
-                <label for="usuario">Proprietário:</label>
-                <select id="usuario" th:field="*{usuario}">
-                    <option value="">Selecione um proprietário</option>
-                    <option th:each="user : ${todosUsuarios}"
-                            th:value="${user.id}"
-                            th:text="${user.username}">
+                <label for="patio">Pátio:</label>
+                <select id="patio" th:field="*{patio.id}"> <option value="">Selecione um pátio</option>
+                    <option th:each="p : ${todosPatios}"
+                            th:value="${p.id}"
+                            th:text="${p.nome}">
                     </option>
                 </select>
-                <span style="color:red;" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></span>
+                <span style="color:red;" th:if="${#fields.hasErrors('patio')}" th:errors="*{patio}"></span>
             </div>
             
             <button type="submit">Salvar</button>

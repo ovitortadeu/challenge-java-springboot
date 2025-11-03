@@ -1,7 +1,6 @@
 package br.com.challenge_java.model;
 
 import java.util.List;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull; 
@@ -21,11 +20,19 @@ public class Veiculo {
     @EqualsAndHashCode.Include
     private Long id;
 
+    // CAMPO ANTIGO REMOVIDO (causa do erro 'AnnotationException')
+    // @ToString.Exclude
+    // @NotNull(message = "O proprietário é obrigatório.") 
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "TB_MTT_USUARIO_id", nullable = false)
+    // private Usuario usuario;
+
+    // CAMPO NOVO ADICIONADO (conforme V5)
     @ToString.Exclude
-    @NotNull(message = "O proprietário é obrigatório.") 
+    @NotNull(message = "O pátio é obrigatório.")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TB_MTT_USUARIO_id", nullable = false)
-    private Usuario usuario;
+    @JoinColumn(name = "TB_MTT_PATIO_id", nullable = false)
+    private Patio patio;
 
     @Column(name = "placa_antiga", length = 7)
     private String placaAntiga;
@@ -42,4 +49,9 @@ public class Veiculo {
     @ToString.Exclude
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Iot> dispositivosIot;
+    
+    // LISTA NOVA ADICIONADA (conforme V5)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL)
+    private List<Locacao> locacoes;
 }

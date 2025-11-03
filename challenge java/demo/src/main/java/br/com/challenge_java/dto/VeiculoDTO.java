@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class VeiculoDTO {
     private Long id;
-    private Long usuarioId;
-    private String usernameUsuario;
+    private Long patioId; // <-- ALTERADO
+    private String nomePatio; // <-- ALTERADO
     private String placaAntiga;
     private String placaNova;
     private String tipoVeiculo;

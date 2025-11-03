@@ -11,7 +11,7 @@
     <main>
         <h3>Frota de Veículos</h3>
         
-        <div sec:authorize="hasRole('ADMIN')" style="margin-bottom: 15px;">
+        <div style="margin-bottom: 15px;">
             <a th:href="@{/veiculos/new}" class="button-link add">Adicionar Novo Veículo</a>
         </div>
         
@@ -24,9 +24,7 @@
                     <th>ID</th>
                     <th>Placa</th>
                     <th>Tipo</th>
-                    <th>Proprietário</th>
-                    <th sec:authorize="hasRole('ADMIN')">Ações</th>
-                </tr>
+                    <th>Pátio Atual</th> <th>Ações</th> </tr>
             </thead>
             <tbody>
                 <tr th:if="${veiculos.isEmpty()}">
@@ -36,8 +34,8 @@
                     <td th:text="${veiculo.id}">1</td>
                     <td th:text="${veiculo.placaNova}">BRA2E19</td>
                     <td th:text="${veiculo.tipoVeiculo}">Moto</td>
-                    <td th:text="${veiculo.usuario.username}">user</td>
-                    <td sec:authorize="hasRole('ADMIN')">
+                    <td th:text="${veiculo.patio?.nome ?: 'Sem Pátio'}">Pátio Central</td>
+                    <td>
                         <a th:href="@{/veiculos/edit/{id}(id=${veiculo.id})}">Editar</a>
                         |
                         <a th:href="@{/veiculos/delete/{id}(id=${veiculo.id})}">Excluir</a>
