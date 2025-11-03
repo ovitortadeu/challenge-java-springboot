@@ -48,7 +48,8 @@ public class VeiculoController {
 
     @GetMapping("/usuario/{usuarioId}")
     public ResponseEntity<List<VeiculoDTO>> listarVeiculosPorUsuario(@PathVariable Long usuarioId) {
-        List<VeiculoDTO> veiculos = veiculoService.listarPorUsuarioId(usuarioId);
+        // AGORA CHAMA O NOVO MÉTODO QUE BUSCA POR LOCAÇÕES
+        List<VeiculoDTO> veiculos = veiculoService.listarPorLocacaoUsuarioId(usuarioId);
         return ResponseEntity.ok(veiculos);
     }
 

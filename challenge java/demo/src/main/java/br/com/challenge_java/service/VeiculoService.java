@@ -5,9 +5,11 @@ import br.com.challenge_java.dto.VeiculoDTO;
 import br.com.challenge_java.exception.BusinessException;
 import br.com.challenge_java.exception.ResourceNotFoundException;
 import br.com.challenge_java.mapper.VeiculoMapper;
+import br.com.challenge_java.model.Locacao; // <-- ADICIONADO
 import br.com.challenge_java.model.Patio;
 import br.com.challenge_java.model.Usuario;
 import br.com.challenge_java.model.Veiculo;
+import br.com.challenge_java.repository.LocacaoRepository; // <-- ADICIONADO
 import br.com.challenge_java.repository.PatioRepository;
 import br.com.challenge_java.repository.UsuarioRepository;
 import br.com.challenge_java.repository.VeiculoRepository;
@@ -30,8 +32,11 @@ public class VeiculoService {
     private final UsuarioRepository usuarioRepository;
     private final VeiculoMapper veiculoMapper;
     private final PatioRepository patioRepository;
+    private final LocacaoRepository locacaoRepository; // <-- ADICIONADO
 
     // --- MÉTODOS DE API (Precisam ser refatorados para Pátio) ---
+
+    // ... (métodos criarVeiculo e atualizarVeiculo permanecem iguais) ...
 
     @Transactional
     public VeiculoDTO criarVeiculo(VeiculoCreateDTO veiculoCreateDTO) {
@@ -70,6 +75,19 @@ public class VeiculoService {
         return veiculoMapper.toVeiculoDTO(veiculoAtualizado);
     }
 
+    // --- NOVO MÉTODO PARA API ---
+    @Transactional(readOnly = true)
+    public List<VeiculoDTO> listarPorLocacaoUsuarioId(Long usuarioId) {
+        List<Locacao> locacoes = locacaoRepository.findByUsuarioId(usuarioId);
+        return locacoes.stream()
+                .map(Locacao::getVeiculo) // Extrai o Veiculo de cada Locacao
+                .distinct() // Evita duplicatas se um usuário alugou o mesmo veículo várias vezes
+                .map(veiculoMapper::toVeiculoDTO) // Mapeia Veiculo para VeiculoDTO
+                .collect(Collectors.toList());
+    }
+    // ----------------------------
+
+
     // --- MÉTODOS DO WEB CONTROLLER (Corrigidos) ---
 
     @Transactional(readOnly = true)
@@ -78,7 +96,8 @@ public class VeiculoService {
                 .map(veiculoMapper::toVeiculoDTO)
                 .orElseThrow(() -> new ResourceNotFoundException("Veículo não encontrado com ID: " + id));
     }
-
+    
+    // ... (outros métodos do Web Controller permanecem iguais) ...
     @Transactional(readOnly = true)
     public Page<VeiculoDTO> listarTodosPaginado(Pageable pageable) {
         return veiculoRepository.findAll(pageable)
