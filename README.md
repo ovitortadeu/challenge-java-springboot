@@ -86,7 +86,7 @@ O modelo de dados foi refatorado (conforme feedback da S3) para focar no gerenci
 
 2.  **Configure o Banco de Dados:**
     * Abra o arquivo `src/main/resources/application.properties`.
-    * Altere as propriedades `spring.datasource.username` (rm559105) e `spring.datasource.password` (060506) para as suas credenciais do Oracle.
+    * Altere as propriedades `spring.datasource.username`  e `spring.datasource.password` para as credenciais do Oracle.
 
 3.  **Execute a Aplicação:**
     * O Flyway criará e populará o banco de dados automaticamente na primeira inicialização.
