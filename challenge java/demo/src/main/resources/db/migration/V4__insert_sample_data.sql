@@ -42,3 +42,14 @@ INSERT INTO TB_MTT_LOGRADOURO (TB_MTT_USUARIO_id, TB_MTT_FILIAL_id, TB_MTT_CIDAD
 VALUES ((SELECT id FROM TB_MTT_USUARIO WHERE username = 'user'), NULL, 1, 'Rua Augusta', '1250', '01304001', 'Apto 101');
 INSERT INTO TB_MTT_LOGRADOURO (TB_MTT_USUARIO_id, TB_MTT_FILIAL_id, TB_MTT_CIDADE_id, nome_logradouro, numero_logradouro, cep, complemento) 
 VALUES (NULL, 1, 3, 'Avenida Afonso Pena', '4000', '30130009', 'Loja 05');
+
+INSERT INTO TB_MTT_FINANCAS (agencia, conta, saldo) VALUES (1, 1, 4363.55);
+INSERT INTO TB_MTT_FINANCAS (agencia, conta, saldo) VALUES (1, 2, 4794.76);
+INSERT INTO TB_MTT_FINANCAS (agencia, conta, saldo) VALUES (1, 3, 4718.25);
+INSERT INTO TB_MTT_FINANCAS (agencia, conta, saldo) VALUES (1, 4, 5387.45);
+INSERT INTO TB_MTT_FINANCAS (agencia, conta, saldo) VALUES (1, 5, 5027.34);
+INSERT INTO TB_MTT_FINANCAS (agencia, conta, saldo) VALUES (2, 1, 5652.84);
+INSERT INTO TB_MTT_FINANCAS (agencia, conta, saldo) VALUES (2, 2, 4583.02);
+INSERT INTO TB_MTT_FINANCAS (agencia, conta, saldo) VALUES (2, 3, 5555.77);
+INSERT INTO TB_MTT_FINANCAS (agencia, conta, saldo) VALUES (2, 4, 5936.67);
+INSERT INTO TB_MTT_FINANCAS (agencia, conta, saldo) VALUES (2, 5, 4508.74);
