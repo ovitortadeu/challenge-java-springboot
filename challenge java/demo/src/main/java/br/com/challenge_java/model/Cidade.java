@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import java.util.List;
+import lombok.ToString; 
 
 @Entity
 @Table(name = "TB_MTT_CIDADE")
@@ -16,6 +17,7 @@ public class Cidade {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TB_MTT_ESTADO_id", nullable = false)
     private Estado estado;
@@ -26,6 +28,7 @@ public class Cidade {
     @Column(name = "numero_ddd", precision = 2, scale = 0, nullable = false)
     private Integer numeroDdd;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY)
     private List<Logradouro> logradouros;
 }

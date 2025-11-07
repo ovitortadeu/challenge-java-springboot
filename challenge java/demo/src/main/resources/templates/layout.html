@@ -8,10 +8,14 @@
 <body>
     <header th:fragment="header">
         <h2>Sistema de Gerenciamento Mottu</h2>
-        <nav>
+		<nav>
             <a th:href="@{/dashboard}" sec:authorize="hasRole('ADMIN')">Dashboard</a>
             <span sec:authorize="hasRole('ADMIN')">|</span>
             <a th:href="@{/veiculos}">Veículos</a>
+            <span sec:authorize="hasRole('ADMIN')">|</span>
+            <a th:href="@{/patios}" sec:authorize="hasRole('ADMIN')">Pátios</a>
+			<span sec:authorize="hasRole('ADMIN')">|</span>
+			<a th:href="@{/logradouros}" sec:authorize="hasRole('ADMIN')">Endereços</a>
         </nav>
         <form th:action="@{/logout}" method="post">
             <button type="submit">Sair</button>

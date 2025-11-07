@@ -25,13 +25,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-// @RequiredArgsConstructor // Removido
 public class SecurityConfig {
 
     private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
     private final UsuarioRepository usuarioRepository;
 
-    // Construtor manual adicionado
     public SecurityConfig(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
@@ -83,18 +81,15 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                // Permite acesso a páginas de erro
                 .requestMatchers("/login", "/css/**", "/js/**", "/error", "/acesso-negado").permitAll() 
                 
-                // ALTERAÇÃO: Agora, TUDO em /veiculos/ só pode ser acessado por ADMIN
-                .requestMatchers("/veiculos/**", "/dashboard/**").hasRole("ADMIN")
+                .requestMatchers("/veiculos/**", "/dashboard/**", "/patios/**", "/logradouros/**").hasRole("ADMIN")
                 
-                // Qualquer outra requisição precisa de autenticação
                 .anyRequest().authenticated() 
             )
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/veiculos", true) // ADMIN vai para /veiculos
+                .defaultSuccessUrl("/veiculos", true) 
                 .permitAll()
             )
             .logout(logout -> logout
@@ -102,7 +97,6 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/login?logout")
                 .permitAll()
             )
-             // ADICIONADO: Handler de acesso negado (Feedback da S3)
             .exceptionHandling(ex -> ex.accessDeniedPage("/acesso-negado"));
 
         return http.build();
