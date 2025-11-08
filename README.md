@@ -11,6 +11,10 @@ O modelo de dados foi refatorado (conforme feedback da S3) para focar no gerenci
 
 ---
 
+* **Link do Vídeo (YouTube):** `https://youtu.be/MIUTIiUtzcM`
+  
+---
+
 ## 👨‍💻 Aluno(s)
 
 * VITOR TADEU SOARES DE SOUSA - RM559105 - 2TDSPH
