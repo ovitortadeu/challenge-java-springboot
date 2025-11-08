@@ -103,7 +103,3 @@ A aplicação é populada com usuários de exemplo pelo Flyway.
 * **Senha:** `admin123`
 * **Permissões:** Acesso total ao CRUD de veículos e ao Dashboard.
 
-#### Perfil Usuário Comum
-* **Usuário:** `user`
-* **Senha:** `user123`
-* **Permissões:** Acesso restrito. Será redirecionado para a página "Acesso Negado" ao tentar acessar rotas de admin.
