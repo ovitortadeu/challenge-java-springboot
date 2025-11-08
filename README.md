@@ -18,9 +18,9 @@ O modelo de dados foi refatorado (conforme feedback da S3) para focar no gerenci
 
 ## 👨‍💻 Aluno(s)
 
-* VITOR TADEU SOARES DE SOUSA - RM559105
-* GIOVANNI DE SOUZA LIMA - RM5566536
-
+* VITOR TADEU SOARES DE SOUSA - RM559105 - 2TDSPH
+* GIOVANNI DE SOUZA LIMA - RM5566536 - 2TDSPH
+* Diego bassalo          - rm558710 - 2TDSPG
 ---
 
 ## ✨ Principais Funcionalidades
