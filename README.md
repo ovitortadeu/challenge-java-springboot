@@ -1,10 +1,5 @@
 # Challenge Java Mottu - Aplicação Final (Sprint 4)
 
-## 🚀 Link da Aplicação (Deploy)
-
-> **[PENDENTE]**
-> *O link da aplicação implantada no Azure será inserido aqui.*
-
 ## 📋 Visão Geral do Projeto
 
 Este projeto é a entrega final da disciplina de Java Advanced para o Challenge Mottu. A solução consiste em um sistema duplo:
@@ -12,7 +7,7 @@ Este projeto é a entrega final da disciplina de Java Advanced para o Challenge 
 1.  Uma **API RESTful** robusta e segura (JWT), documentada com Swagger, pronta para ser consumida por aplicações mobile e outras integrações.
 2.  Uma **Aplicação Web (Backoffice)** construída com Thymeleaf e Spring Security, permitindo o gerenciamento administrativo do sistema.
 
-O modelo de dados foi refatorado (conforme feedback da S3) para focar no gerenciamento de **Pátios** e **Locações** de veículos, alinhando-se de forma mais precisa às regras de negócio da Mottu.
+O modelo de dados foi refatorado (conforme feedback da S3) para focar no gerenciamento de **Pátios** de veículos, alinhando-se de forma mais precisa às regras de negócio da Mottu.
 
 ---
 
